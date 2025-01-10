@@ -1,18 +1,48 @@
-// Generáló gomb működtetése:
+const loverCase = "abcdefghijklmnopqrstuvwxyz";
+const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const number = "0123456789";
+const specChar = "§+!%/=();_*?@&#<>[]";
+const password = [];
+
 document.getElementById("generateBtn").onclick = handleClick;
 
 function handleClick() {
-    const values = getInputValue();
+    const values = getInputValues();
+    getReadyPassword(values);
 }
-// Üzenetet küldő eljárás:
+
 function sendMessage(message) {
     alert(message);
 }
 
-// Értékek kinyerése. Ha hiányzik érték az inputból, akkor üzenetet küldünk, input-ra helyezzük a fókszt, és null-t adunk vissza.
-function getInputValue() {
+function getInputValues() {
     const inputElements = document.querySelectorAll("input");
-    for (let element of inputElements) {
+    const values = {};
+    if (inputElements.length > 0) {
+        for (let index in inputElements){
+            if (inputElements[index].value === "") {
+                sendMessage("Minden adat kitöltése szükséges!");
+                inputElements[index].focus();
+                return {};
+            }
+            values[inputElements[index].id] = inputElements[index].value
+        }
+        return values
+    }
 
+}
+
+function createPasswordPart(count, collection) {
+    for (let i = 0; i < count; i++) {
+        password.push(collection[Math.floor(Math.random() * collection.length)]);
+    }
+}
+
+function getReadyPassword() {
+    const donePassword = [];
+    for (let key in values) {
+        switch (key) {
+            
+        }
     }
 }
